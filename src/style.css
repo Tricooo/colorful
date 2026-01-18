@@ -1,0 +1,243 @@
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #000;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.fluid-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.fluid-container canvas {
+  display: block;
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  z-index: 1002;
+  /* iOS 26 Liquid Glass 风格 */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+.toggle-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: rgba(0, 0, 0, 0.5);
+  transition: fill 0.3s;
+}
+
+.fluid-ui-container {
+  position: absolute;
+  top: 90px;
+  right: 20px;
+  width: 300px;
+  /* iOS 26 Liquid Glass 风格 - 更透明 */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 24px;
+  padding: 20px;
+  color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  backdrop-filter: blur(50px) saturate(200%);
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.1);
+  transition: opacity 0.3s, transform 0.3s;
+  /* 去掉滚动条，自适应高度 */
+  overflow: visible;
+  background-clip: padding-box;
+}
+
+.fluid-ui-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(20px);
+}
+
+.fluid-ui-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 16px;
+  letter-spacing: 0.8px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.fluid-ui-container label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 6px;
+  margin-top: 12px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.fluid-ui-container label span {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+}
+
+.fluid-ui-container input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: transparent;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.fluid-ui-container input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.fluid-ui-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  margin-top: -7px;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.fluid-ui-container input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.theme-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(0, 0, 0, 0.7);
+  padding: 8px 6px;
+  font-size: 9px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+  backdrop-filter: blur(10px);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.theme-btn.active {
+  background: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.85);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.pause-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pause-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.pause-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: rgba(0, 0, 0, 0.6);
+}
+
+.fluid-ui-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.fluid-ui-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.fluid-ui-container::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
